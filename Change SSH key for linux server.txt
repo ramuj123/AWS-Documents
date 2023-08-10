@@ -1,0 +1,24 @@
+Open Cloudshell:
+
+aws ec2 describe-key-pairs --key-names key-pair-name --include-public-key  
+
+
+Access the EC2 server.
+
+    1.sudo su
+    2  ls -a
+    3  cd .ssh/
+    4  ls
+    5  cat authorized_keys
+    6  sudo vi authorized_keys
+
+
+
+
+
+
+
+
+
+
+

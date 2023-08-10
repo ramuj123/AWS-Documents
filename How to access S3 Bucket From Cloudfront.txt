@@ -1,0 +1,28 @@
+* How to access S3 Bucket From Cloud Front...?
+
+
+
+1) create S3 Bucket
+	* static web host or any objects ( ACL & Public Access should be disable)
+
+2) create cloudFront Distribution 
+	* select origin domain --> in origin access(legacy access identities) --> create new OAI
+	  bucket policy(yes update the bucket policy)
+	* viewer protocol policy(Redirect http-https)
+	* in dafault Root Object(add object Path(/index.html).....optional
+3) copy Distribution Domain Name and paste in to the tab...( to access any file from S3 bucket objects use (/example.png) or (/index.html)....if path is not mentioned in distribution.
+	  
+	  
+
+*How to connect Private RDS through OPEN VPN 
+
+1) Create VPC 
+2) create open vpn using same vpc network 
+3) create rds of mysql (select same vpc) and security group should be default of vpc and in that connect it with ec2(openvpn server)
+4) connect open vpn server through shell
+5) install the packages of mysql server
+   a)sudo apt-get update
+   b)sudo apt-get install mysql-server
+   c)mysql -h <RDS_ENDPOINT> -P <RDS_PORT> -u <USERNAME> -p
+6) show databases;
+couponls 

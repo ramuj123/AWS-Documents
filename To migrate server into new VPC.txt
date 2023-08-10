@@ -1,0 +1,8 @@
+To migrate server into new VPC
+
+1.First Setup a new VPC and subnets 
+2.Take AMI of existing server.
+3.Launch Server using AMI and select new vpc and subnets . 
+
+
+

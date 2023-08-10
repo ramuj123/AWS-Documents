@@ -1,0 +1,43 @@
+[centos@ip-172-30-1-76 ~]$ vi nitro.sh
+[centos@ip-172-30-1-76 ~]$ sudo chmod +x nitro.sh 
+[centos@ip-172-30-1-76 ~]$ ./nitro.sh 
+------------------------------------------------
+
+This script must be run as root
+
+------------------------------------------------
+[centos@ip-172-30-1-76 ~]$ sudo ./nitro.sh 
+------------------------------------------------
+
+OK     NVMe Module is installed and available on your instance
+
+
+OK     ENA Module with version 1.5.0K is installed and available on your instance
+
+
+ERROR  Your fstab file contains device names. Mount the partitions using UUID's before changing an instance type to Nitro.
+
+Enter y to replace device names with UUID in /etc/fstab file to make it compatible for NVMe block device names.
+Enter n to keep the file as-is with no modification (y/n) y
+Writing changes to /etc/fstab...
+
+
+***********************
+***********************
+
+Original fstab file is stored as /etc/fstab.backup.2023-07-05-08:26:22
+
+------------------------------------------------
+[centos@ip-172-30-1-76 ~]$ sudo ./nitro.sh 
+------------------------------------------------
+
+OK     NVMe Module is installed and available on your instance
+
+
+OK     ENA Module with version 1.5.0K is installed and available on your instance
+
+
+OK     fstab file looks fine and does not contain any device names. 
+
+------------------------------------------------
+[centos@ip-172-30-1-76 ~]$ Connection closing...Socket close.

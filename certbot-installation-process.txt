@@ -1,0 +1,112 @@
+
+udo certbot certonly --standalone --agree-tos --preferred-challenges http -d domain-name.com            --------- It will issue Lets Encrypt Certificate
+
+ 
+
+$ apt install python3-certbot-nginx                                        --------- If you have nginx then run it or else not required
+
+ 
+
+$ apt install python3-certbot-apache                                        --------- It's Basic requirement need to run this command
+
+ 
+
+$ sudo certbot --apache --agree-tos --preferred-challenges http -d domain-name.com                --------- It's for Apache Server need to run this command
+
+ 
+
+$ sudo certbot --nginx --agree-tos --preferred-challenges http -d domain-name.com                --------- If you have nginx then run it or else not required
+
+[6/8 1:12 PM] Gyanaranjan Sahoo
+
+Let's Encrypt SSL on Ubuntu 20.04
+
+ 
+
+
+
+$ sudo ufw allow 80                                                --------- Enable Firewall Port
+
+ 
+
+$ sudo ufw allow 443                                                --------- Enable Firewall Port
+
+ 
+
+$ sudo apt install letsencrypt                                            --------- Install Let's Encrypt Package
+
+ 
+
+$ sudo systemctl status certbot.timer                                        --------- Check status of this Package(it should running Stage)
+
+ 
+
+$ sudo certbot certonly --standalone --agree-tos --preferred-challenges http -d domain-name.com            --------- It will issue Lets Encrypt Certificate
+
+ 
+
+$ apt install python3-certbot-nginx                                        --------- If you have nginx then run it or else not required
+
+ 
+
+$ apt install python3-certbot-apache                                        --------- It's Basic requirement need to run this command
+
+ 
+
+$ sudo certbot --apache --agree-tos --preferred-challenges http -d domain-name.com                --------- It's for Apache Server need to run this command
+
+ 
+
+$ sudo certbot --nginx --agree-tos --preferred-challenges http -d domain-name.com                --------- If you have nginx then run it or else not required
+
+ 
+
+ 
+
+--------------------------------------------------------------Sucessfully issued SSL Certificate -------------------------------------------------------------------------
+
+ 
+
+
+
+$ sudo certbot certonly --manual --agree-tos --preferred-challenges dns -d domain-name.com -d *.domain-name.com      ------- Wild card certificate ( optional requirement )
+
+ 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+https://www.ssllabs.com/ssltest/analyze.html?d=domain.com                    --- To Verify SSL Status
+
+ 
+
+
+
+$ sudo systemctl status certbot.timer                                --- Auto Renewal
+
+ 
+
+Output
+
+● certbot.timer - Run certbot twice daily
+
+     Loaded: loaded (/lib/systemd/system/certbot.timer; enabled; vendor preset: enabled)
+
+     Active: active (waiting) since Tue 2020-04-28 17:57:48 UTC; 17h ago
+
+    Trigger: Wed 2020-04-29 23:50:31 UTC; 12h left
+
+   Triggers: ● certbot.service
+
+ 
+
+Apr 28 17:57:48 fine-turtle systemd[1]: Started Run certbot twice daily.
+
+ 
+
+
+
+$ sudo certbot renew --dry-run

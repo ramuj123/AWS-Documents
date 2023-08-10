@@ -1,0 +1,59 @@
+root@ip-172-31-20-127:~# sudo certbot renew
+
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Processing /etc/letsencrypt/renewal/jenkins.talgro.com.conf
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Attempting to parse the version 1.32.2 renewal configuration file found at /etc/letsencrypt/renewal/jenkins.talgro.com.conf with version 0.31.0 of Certbot. This might not work.
+Cert is due for renewal, auto-renewing...
+Plugins selected: Authenticator apache, Installer apache
+Renewing an existing certificate
+Performing the following challenges:
+http-01 challenge for jenkins.talgro.com
+Waiting for verification...
+Cleaning up challenges
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+new certificate deployed with reload of apache server; fullchain is
+/etc/letsencrypt/live/jenkins.talgro.com/fullchain.pem
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Processing /etc/letsencrypt/renewal/sonar.talgro.com.conf
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Attempting to parse the version 1.32.2 renewal configuration file found at /etc/letsencrypt/renewal/sonar.talgro.com.conf with version 0.31.0 of Certbot. This might not work.
+Cert is due for renewal, auto-renewing...
+Plugins selected: Authenticator apache, Installer apache
+Renewing an existing certificate
+Performing the following challenges:
+http-01 challenge for sonar.talgro.com
+Waiting for verification...
+Cleaning up challenges
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+new certificate deployed with reload of apache server; fullchain is
+/etc/letsencrypt/live/sonar.talgro.com/fullchain.pem
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Congratulations, all renewals succeeded. The following certs have been renewed:
+  /etc/letsencrypt/live/jenkins.talgro.com/fullchain.pem (success)
+  /etc/letsencrypt/live/sonar.talgro.com/fullchain.pem (success)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+root@ip-172-31-20-127:~# sudo systemctl restart certbot
+root@ip-172-31-20-127:~# sudo systemctl status certbot
+● certbot.service - Certbot
+   Loaded: loaded (/lib/systemd/system/certbot.service; static; vendor preset: enabled)
+   Active: inactive (dead) since Thu 2023-06-08 21:33:47 IST; 16s ago
+     Docs: file:///usr/share/doc/python-certbot-doc/html/index.html
+           https://letsencrypt.readthedocs.io/en/latest/
+  Process: 1416 ExecStart=/usr/bin/certbot -q renew (code=exited, status=0/SUCCESS)
+ Main PID: 1416 (code=exited, status=0/SUCCESS)
+
+Jun 08 21:33:46 ip-172-31-20-127 systemd[1]: Starting Certbot...
+Jun 08 21:33:47 ip-172-31-20-127 systemd[1]: Started Certbot.
+root@ip-172-31-20-127:~# systemctl restart apache2
+

@@ -1,0 +1,3 @@
+commands:
+
+1.export HISTTIMEFORMAT='02/08/23 %T '      ---to enable time and date format in server history

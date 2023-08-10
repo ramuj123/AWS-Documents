@@ -1,0 +1,267 @@
+***************To renew SSL in Gitlab Server***************************************
+ 
+first enable all trafic in security group in inbound and outbound.and then enter command
+use command : sudo gitlab-ctl renew-le-certs
+
+
+root@ip-172-31-19-57:~# sudo gitlab-ctl renew-le-certs
+Starting Chef Client, version 14.14.29
+resolving cookbooks for run list: ["gitlab::letsencrypt_renew"]
+Synchronizing Cookbooks:
+  - gitlab (0.0.1)
+  - package (0.1.0)
+  - postgresql (0.1.0)
+  - redis (0.1.0)
+  - monitoring (0.1.0)
+  - registry (0.1.0)
+  - mattermost (0.1.0)
+  - consul (0.1.0)
+  - gitaly (0.1.0)
+  - praefect (0.1.0)
+  - letsencrypt (0.1.0)
+  - nginx (0.1.0)
+  - runit (4.3.0)
+  - acme (4.1.1)
+  - crond (0.1.0)
+Installing Cookbook Gems:
+Compiling Cookbooks...
+Converging 14 resources
+Recipe: letsencrypt::enable
+  * ruby_block[http external-url] action run (skipped due to only_if)
+Recipe: <Dynamically Defined Resource>
+  * service[nginx] action nothing (skipped due to action :nothing)
+Recipe: nginx::enable
+  * runit_service[nginx] action enable
+    * ruby_block[restart_service] action nothing (skipped due to action :nothing)
+    * ruby_block[restart_log_service] action nothing (skipped due to action :nothing)
+    * ruby_block[reload_log_service] action nothing (skipped due to action :nothing)
+    * directory[/opt/gitlab/sv/nginx] action create (up to date)
+    * template[/opt/gitlab/sv/nginx/run] action create (up to date)
+    * directory[/opt/gitlab/sv/nginx/log] action create (up to date)
+    * directory[/opt/gitlab/sv/nginx/log/main] action create (up to date)
+    * template[/opt/gitlab/sv/nginx/log/run] action create (up to date)
+    * template[/var/log/gitlab/nginx/config] action create (up to date)
+    * ruby_block[verify_chown_persisted_on_nginx] action nothing (skipped due to action :nothing)
+    * directory[/opt/gitlab/sv/nginx/env] action create (up to date)
+    * ruby_block[Delete unmanaged env files for nginx service] action run (skipped due to only_if)
+    * template[/opt/gitlab/sv/nginx/check] action create (skipped due to only_if)
+    * template[/opt/gitlab/sv/nginx/finish] action create (skipped due to only_if)
+    * directory[/opt/gitlab/sv/nginx/control] action create (up to date)
+    * link[/opt/gitlab/init/nginx] action create (up to date)
+    * file[/opt/gitlab/sv/nginx/down] action delete (up to date)
+    * directory[/opt/gitlab/service] action create (up to date)
+    * link[/opt/gitlab/service/nginx] action create (up to date)
+    * ruby_block[wait for nginx service socket] action run (skipped due to not_if)
+     (up to date)
+  * execute[reload nginx] action nothing (skipped due to action :nothing)
+Recipe: letsencrypt::enable
+  * directory[/etc/gitlab/ssl] action create (up to date)
+  * acme_selfsigned[git.talgro.com] action create
+    * file[git.talgro.com SSL selfsigned key] action create_if_missing (up to date)
+    * file[git.talgro.com SSL selfsigned crt] action create_if_missing (up to date)
+    * file[git.talgro.com SSL selfsigned chain] action create_if_missing (skipped due to not_if)
+     (up to date)
+Recipe: letsencrypt::http_authorization
+  * letsencrypt_certificate[git.talgro.com] action create
+    * acme_certificate[staging] action create
+      * file[git.talgro.com SSL key] action create_if_missing (up to date)
+      * directory[/var/opt/gitlab/nginx/www/.well-known/acme-challenge] action create (up to date)
+      * file[/var/opt/gitlab/nginx/www/.well-known/acme-challenge/o4iINrUJ5qQlZpIoRJN4ZT3xVXcA7-TjZh4EPeaP-vo] action create
+        - create new file /var/opt/gitlab/nginx/www/.well-known/acme-challenge/o4iINrUJ5qQlZpIoRJN4ZT3xVXcA7-TjZh4EPeaP-vo
+        - update content in file /var/opt/gitlab/nginx/www/.well-known/acme-challenge/o4iINrUJ5qQlZpIoRJN4ZT3xVXcA7-TjZh4EPeaP-vo from none to 42e734
+        --- /var/opt/gitlab/nginx/www/.well-known/acme-challenge/o4iINrUJ5qQlZpIoRJN4ZT3xVXcA7-TjZh4EPeaP-vo	2023-06-19 07:08:31.134653923 +0000
+        +++ /var/opt/gitlab/nginx/www/.well-known/acme-challenge/.chef-o4iINrUJ5qQlZpIoRJN4ZT3xVXcA7-TjZh4EPeaP-vo20230619-23139-pmhluo	2023-06-19 07:08:31.134653923 +0000
+        @@ -1 +1,2 @@
+        +o4iINrUJ5qQlZpIoRJN4ZT3xVXcA7-TjZh4EPeaP-vo.su8vpqV_GZeEvhKF4dZaSQfzULYJWWTRKg6BwFqKucs
+        - change mode from '' to '0644'
+        - change owner from '' to 'root'
+        - change group from '' to 'root'
+      * file[git.talgro.com SSL key] action nothing (skipped due to action :nothing)
+      * directory[/var/opt/gitlab/nginx/www/.well-known/acme-challenge] action nothing (skipped due to action :nothing)
+      * file[/var/opt/gitlab/nginx/www/.well-known/acme-challenge/o4iINrUJ5qQlZpIoRJN4ZT3xVXcA7-TjZh4EPeaP-vo] action nothing (skipped due to action :nothing)
+      * file[/var/opt/gitlab/nginx/www/.well-known/acme-challenge/o4iINrUJ5qQlZpIoRJN4ZT3xVXcA7-TjZh4EPeaP-vo] action delete
+        - delete file /var/opt/gitlab/nginx/www/.well-known/acme-challenge/o4iINrUJ5qQlZpIoRJN4ZT3xVXcA7-TjZh4EPeaP-vo
+      * ruby_block[create certificate for git.talgro.com] action run
+      Recipe: <Dynamically Defined Resource>
+        * file[git.talgro.com SSL new crt] action create
+          - update content in file /etc/gitlab/ssl/git.talgro.com.crt-staging from b6caee to c3e332
+          --- /etc/gitlab/ssl/git.talgro.com.crt-staging	2023-03-20 05:22:45.660338154 +0000
+          +++ /etc/gitlab/ssl/.chef-git20230619-23139-1fr4nki.talgro.com.crt-staging	2023-06-19 07:08:36.926686416 +0000
+          @@ -1,33 +1,32 @@
+           -----BEGIN CERTIFICATE-----
+          -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
+          -hlj2WzPdR6Og0iQ4potrNlTC5j/Eng==
+          +LzAZBgNVHREEEjAQgg5naXQudGFsZ3JvLmNvbTATBgNVHSAEDDAKMAgGBmeBDAEC
+          +ATCCAQUGCisGAQQB1nkCBAIEgfYEgfMA8QB3AO2rnR3dg3OVn/UqiORrtLzDxMxN
+          +dopgzP9ONi1/uNZoAAABiNJ74o4AAAQDAEgwRgIhAIRFh+ICau8Yjmo4abzmjW+C
+          +A8fHuTWlh2cxtxiU0caeAiEAky0COM2xKJSok6i7vAav/WKx/AbEhu5rC8h3QesV
+          +qRIAdgCwzIPlpfl9a698CcwoSQSHKsfoixMsY1C3xv0m4WxsdwAAAYjSe+KLAAAE
+          +AwBHMEUCIDau3Hu+3MTpCtoLUHnk3lwrdox8g61u5K2CidKXeOedAiEAvGVj6al5
+          +lgCoRKxMEvDhrN6SVSrvTkm3bVXcSyB4iAQwDQYJKoZIhvcNAQELBQADggEBAIIq
+          +UGFsziwCIX2LvjtA5d+SEm2xxsDrTzL7r1urnhI4ECWkYTFrau2ZbGxR+wDwDJI/
+          +RjXGODTBWF1ns84g+/wZkoKiex+Mi0sEVvaSX2VGbN3oH5bFDEEB63QQ42U1ITz6
+          +PrzJYHSUxOH5TM97rxpq88V1NKuDVNcH3aiy2ff9Ly+7PLC/tfi4B4DAlbcOB8+0
+          +/ETfjG46EPWChbwl4sIGlxg3BFZ8L5ykj/yrMv8v5H308hfS8Lx8XZJbv0ZLFzX5
+          +l+icxbkJYozTqJF9zRA3k0+VVI13LuFheOmESS1YFw/PzmAUKuj03jRHd4B8cy1Q
+          +58bIg//AONupAauWPgw=
+           -----END CERTIFICATE-----
+           
+           -----BEGIN CERTIFICATE-----
+        - execute the ruby block create certificate for git.talgro.com
+    
+    * ruby_block[reset private key] action run
+      - execute the ruby block reset private key
+    * acme_certificate[production] action create
+      * file[git.talgro.com SSL key] action create_if_missing (up to date)
+      * directory[/var/opt/gitlab/nginx/www/.well-known/acme-challenge] action create (up to date)
+      * file[/var/opt/gitlab/nginx/www/.well-known/acme-challenge/8GGyoqhNwXOoyQW0b2DPW8lSthSloaeqKFm0vjMNdtU] action create
+        - create new file /var/opt/gitlab/nginx/www/.well-known/acme-challenge/8GGyoqhNwXOoyQW0b2DPW8lSthSloaeqKFm0vjMNdtU
+        - update content in file /var/opt/gitlab/nginx/www/.well-known/acme-challenge/8GGyoqhNwXOoyQW0b2DPW8lSthSloaeqKFm0vjMNdtU from none to 2b98c7
+        --- /var/opt/gitlab/nginx/www/.well-known/acme-challenge/8GGyoqhNwXOoyQW0b2DPW8lSthSloaeqKFm0vjMNdtU	2023-06-19 07:08:41.130709999 +0000
+        +++ /var/opt/gitlab/nginx/www/.well-known/acme-challenge/.chef-8GGyoqhNwXOoyQW0b2DPW8lSthSloaeqKFm0vjMNdtU20230619-23139-ue3fne	2023-06-19 07:08:41.130709999 +0000
+        @@ -1 +1,2 @@
+        +8GGyoqhNwXOoyQW0b2DPW8lSthSloaeqKFm0vjMNdtU.mfpPvZWou2p0aGE9R4Ir7lZTPmxu2SYuR0onRHPrImQ
+        - change mode from '' to '0644'
+        - change owner from '' to 'root'
+        - change group from '' to 'root'
+      * file[git.talgro.com SSL key] action nothing (skipped due to action :nothing)
+      * directory[/var/opt/gitlab/nginx/www/.well-known/acme-challenge] action nothing (skipped due to action :nothing)
+      * file[/var/opt/gitlab/nginx/www/.well-known/acme-challenge/8GGyoqhNwXOoyQW0b2DPW8lSthSloaeqKFm0vjMNdtU] action nothing (skipped due to action :nothing)
+      * file[/var/opt/gitlab/nginx/www/.well-known/acme-challenge/8GGyoqhNwXOoyQW0b2DPW8lSthSloaeqKFm0vjMNdtU] action delete
+        - delete file /var/opt/gitlab/nginx/www/.well-known/acme-challenge/8GGyoqhNwXOoyQW0b2DPW8lSthSloaeqKFm0vjMNdtU
+      * ruby_block[create certificate for git.talgro.com] action run
+        * file[git.talgro.com SSL new crt] action create
+          - update content in file /etc/gitlab/ssl/git.talgro.com.crt from 16cd58 to 4a2bc3
+          --- /etc/gitlab/ssl/git.talgro.com.crt	2023-03-20 05:22:54.004365135 +0000
+          +++ /etc/gitlab/ssl/.chef-git20230619-23139-1j9vndo.talgro.com.crt	2023-06-19 07:08:45.814736275 +0000
+          @@ -1,32 +1,31 @@
+           -----BEGIN CERTIFICATE-----
+          -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
+          -yDq84CEXFOnxH7bjriZRrsfcb3c2xQ==
+          +LzAZBgNVHREEEjAQgg5naXQudGFsZ3JvLmNvbTATBgNVHSAEDDAKMAgGBmeBDAEC
+          +ATCCAQUGCisGAQQB1nkCBAIEgfYEgfMA8QB2ALc++yTfnE26dfI5xbpY9Gxd/ELP
+          +ep81xJ4dCYEl7bSZAAABiNJ8CnkAAAQDAEcwRQIgUtpRBN61Lrdb3q2N7gSTuS9q
+          +7UX0JR8bT+x5Lw29eXACIQCKk37mvv5fAf3hGkaxMXJG0746XovqS39Z5MDOY1k5
+          +dgB3AOg+0No+9QY1MudXKLyJa8kD08vREWvs62nhd31tBr1uAAABiNJ8CoEAAAQD
+          +AEgwRgIhAK2cJIGw5NEAGpVaNSmanoUimfVJtVSwBbyZ4EE+b2zeAiEAjcIZsJs4
+          +vLhMi39y8tuC6fTd+RJU+kXTLs7I3tmohu0wDQYJKoZIhvcNAQELBQADggEBAJWx
+          +fsLH/ZKhPttRExULRb08DIIYZdd5GQ6kA115ZPZMkyJmUAuYQW0kNkWtSXfdorQR
+          +RxeS0Y+2FIq/O5xSHKNtiOKfD5YAz4/sxH4dF0LADujhO5J/2Ug+7tObQqTFc97b
+          +k+rYKuoE+HrxwMx+Wtf9/s8TZBjK3HzSp7sSTPsb47KCx+x47WyIxNpjDe6i/H43
+          +pxRALgZhMmdJpvGIE2S1kMJ+K4G3tja40L41nQuAPmp+jqztUVKbOlS0se+k7ABB
+          +0yjzHkDFOncohtm75k8CUNW5P9KFx+6jnyl4FzSf77YS4MINLMfnLfa3G/oNC5Hf
+          +VJeRR4WETNj3gMrYP0M=
+           -----END CERTIFICATE-----
+           
+           -----BEGIN CERTIFICATE-----
+        - execute the ruby block create certificate for git.talgro.com
+    
+  
+Recipe: nginx::enable
+  * execute[reload nginx] action run
+    - execute gitlab-ctl hup nginx
+Recipe: crond::enable
+  * directory[/var/log/gitlab/crond] action create (up to date)
+  * directory[/var/opt/gitlab/crond] action create (up to date)
+Recipe: <Dynamically Defined Resource>
+  * service[crond] action nothing (skipped due to action :nothing)
+Recipe: crond::enable
+  * runit_service[crond] action enable
+    * ruby_block[restart_service] action nothing (skipped due to action :nothing)
+    * ruby_block[restart_log_service] action nothing (skipped due to action :nothing)
+    * ruby_block[reload_log_service] action nothing (skipped due to action :nothing)
+    * directory[/opt/gitlab/sv/crond] action create (up to date)
+    * template[/opt/gitlab/sv/crond/run] action create (up to date)
+    * directory[/opt/gitlab/sv/crond/log] action create (up to date)
+    * directory[/opt/gitlab/sv/crond/log/main] action create (up to date)
+    * template[/opt/gitlab/sv/crond/log/run] action create (up to date)
+    * template[/var/log/gitlab/crond/config] action create (up to date)
+    * ruby_block[verify_chown_persisted_on_crond] action nothing (skipped due to action :nothing)
+    * directory[/opt/gitlab/sv/crond/env] action create (up to date)
+    * ruby_block[Delete unmanaged env files for crond service] action run (skipped due to only_if)
+    * template[/opt/gitlab/sv/crond/check] action create (skipped due to only_if)
+    * template[/opt/gitlab/sv/crond/finish] action create (skipped due to only_if)
+    * directory[/opt/gitlab/sv/crond/control] action create (up to date)
+    * link[/opt/gitlab/init/crond] action create (up to date)
+    * file[/opt/gitlab/sv/crond/down] action delete (up to date)
+    * directory[/opt/gitlab/service] action create (up to date)
+    * link[/opt/gitlab/service/crond] action create (up to date)
+    * ruby_block[wait for crond service socket] action run (skipped due to not_if)
+     (up to date)
+Recipe: letsencrypt::enable
+  * crond_job[letsencrypt-renew] action create
+    * file[/var/opt/gitlab/crond/letsencrypt-renew] action create (up to date)
+     (up to date)
+  * ruby_block[display_le_message] action nothing (skipped due to action :nothing)
+  * ruby_block[save_auto_enabled] action run
+    - execute the ruby block save_auto_enabled
+Recipe: nginx::enable
+  * execute[reload nginx] action run
+    - execute gitlab-ctl hup nginx
+Recipe: letsencrypt::enable
+  * ruby_block[display_le_message] action run
+    - execute the ruby block display_le_message
+
+Running handlers:
+Running handlers complete
+Chef Client finished, 16/82 resources updated in 24 seconds
+root@ip-172-31-19-57:~# 

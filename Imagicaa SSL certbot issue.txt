@@ -1,0 +1,1174 @@
+[centos@ip-172-30-1-179 ~]$ certbot
+The following error was encountered:
+[Errno 13] Permission denied: '/var/log/letsencrypt/.certbot.lock'
+Either run as root, or set --config-dir, --work-dir, and --logs-dir to writeable paths.
+[centos@ip-172-30-1-179 ~]$ sudo certbot
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator apache, Installer apache
+Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org
+
+Which names would you like to activate HTTPS for?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: aquamagicaa.com
+2: www.aquamagicaa.com
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate numbers separated by commas and/or spaces, or leave input
+blank to select all options shown (Enter 'c' to cancel): c
+Please specify --domains, or --installer that will help in domain names autodiscovery, or --cert-name for an existing certificate name.
+[centos@ip-172-30-1-179 ~]$ cd /vatr
+-bash: cd: /vatr: No such file or directory
+[centos@ip-172-30-1-179 ~]$ cd /var
+[centos@ip-172-30-1-179 var]$ ;s
+-bash: syntax error near unexpected token `;'
+[centos@ip-172-30-1-179 var]$ ls
+adm  cache  crash  db  empty  games  gopher  kerberos  lib  local  lock  log  mail  nis  opt  preserve  run  spool  tmp  www  yp
+[centos@ip-172-30-1-179 var]$ cd www
+[centos@ip-172-30-1-179 www]$ ls
+cgi-bin  html
+[centos@ip-172-30-1-179 www]$ cd /etc/h
+host.conf    hostname     hosts        hosts.allow  hosts.deny   httpd/       
+[centos@ip-172-30-1-179 www]$ cd /etc/httpd/
+[centos@ip-172-30-1-179 httpd]$ ls
+conf  conf.d  conf.modules.d  logs  modules  run  ssl_certs
+[centos@ip-172-30-1-179 httpd]$ cd cong
+-bash: cd: cong: No such file or directory
+[centos@ip-172-30-1-179 httpd]$ cd conf
+[centos@ip-172-30-1-179 conf]$ ls
+1           httpd.conf_20181212  httpd.conf_backup_20201121  httpd.conf-bkp  httpd-le-ssl.conf  test2.adlabsimagica.com.conf
+httpd.conf  httpd.conf_20191108  httpd.conf-bak              httpd.conf.bkp  magic
+[centos@ip-172-30-1-179 conf]$ cd ..
+[centos@ip-172-30-1-179 httpd]$ ls
+conf  conf.d  conf.modules.d  logs  modules  run  ssl_certs
+[centos@ip-172-30-1-179 httpd]$ cd conf.d
+[centos@ip-172-30-1-179 conf.d]$ ls
+autoindex.conf  php.conf  phpMyAdmin.conf  phpMyAdmin.conf.rpmnew  README  ssl.conf  userdir.conf  welcome.conf
+[centos@ip-172-30-1-179 conf.d]$ vi ssl.conf 
+[centos@ip-172-30-1-179 conf.d]$  sudo certbot delete
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+Which certificate(s) would you like to delete?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: aquamagicaa.com
+2: test.aquamagica.com
+3: www.aquamagicaa.com
+4: www.test.aquamagicaa.com
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate numbers separated by commas and/or spaces, or leave input
+blank to select all options shown (Enter 'c' to cancel): 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+The following certificate(s) are selected for deletion:
+
+  * aquamagicaa.com
+  * test.aquamagica.com
+  * www.aquamagicaa.com
+  * www.test.aquamagicaa.com
+
+Are you sure you want to delete the above certificate(s)?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: y
+Deleted all files relating to certificate aquamagicaa.com.
+Deleted all files relating to certificate test.aquamagica.com.
+Deleted all files relating to certificate www.aquamagicaa.com.
+Deleted all files relating to certificate www.test.aquamagicaa.com.
+[centos@ip-172-30-1-179 conf.d]$ sudo systemctl restart httpd
+Job for httpd.service failed because the control process exited with error code. See "systemctl status httpd.service" and "journalctl -xe" for details.
+[centos@ip-172-30-1-179 conf.d]$ sudo systemctl status httpd.service
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: failed (Result: exit-code) since Mon 2023-05-29 05:57:37 UTC; 1min 10s ago
+     Docs: man:httpd(8)
+           man:apachectl(8)
+  Process: 17363 ExecStop=/bin/kill -WINCH ${MAINPID} (code=exited, status=1/FAILURE)
+  Process: 17361 ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND (code=exited, status=1/FAILURE)
+ Main PID: 17361 (code=exited, status=1/FAILURE)
+
+May 29 05:57:36 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Starting The Apache HTTP Server...
+May 29 05:57:36 ip-172-30-1-179.ap-south-1.compute.internal httpd[17361]: AH00526: Syntax error on line 21 of /etc/httpd/conf/httpd-le-ssl.conf:
+May 29 05:57:36 ip-172-30-1-179.ap-south-1.compute.internal httpd[17361]: SSLCertificateFile: file '/etc/letsencrypt/live/aquamagicaa.com/cert.pem' does not e...s empty
+May 29 05:57:37 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service: main process exited, code=exited, status=1/FAILURE
+May 29 05:57:37 ip-172-30-1-179.ap-south-1.compute.internal kill[17363]: kill: cannot find process ""
+May 29 05:57:37 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service: control process exited, code=exited status=1
+May 29 05:57:37 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Failed to start The Apache HTTP Server.
+May 29 05:57:37 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Unit httpd.service entered failed state.
+May 29 05:57:37 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service failed.
+Hint: Some lines were ellipsized, use -l to show in full.
+[centos@ip-172-30-1-179 conf.d]$ sudo systemctl start httpd.service
+Job for httpd.service failed because the control process exited with error code. See "systemctl status httpd.service" and "journalctl -xe" for details.
+[centos@ip-172-30-1-179 conf.d]$ cd
+[centos@ip-172-30-1-179 ~]$ sudo systemctl status httpd.service
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: failed (Result: exit-code) since Mon 2023-05-29 05:59:06 UTC; 25s ago
+     Docs: man:httpd(8)
+           man:apachectl(8)
+  Process: 17389 ExecStop=/bin/kill -WINCH ${MAINPID} (code=exited, status=1/FAILURE)
+  Process: 17387 ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND (code=exited, status=1/FAILURE)
+ Main PID: 17387 (code=exited, status=1/FAILURE)
+
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Starting The Apache HTTP Server...
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal httpd[17387]: AH00526: Syntax error on line 21 of /etc/httpd/conf/httpd-le-ssl.conf:
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal httpd[17387]: SSLCertificateFile: file '/etc/letsencrypt/live/aquamagicaa.com/cert.pem' does not e...s empty
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service: main process exited, code=exited, status=1/FAILURE
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal kill[17389]: kill: cannot find process ""
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service: control process exited, code=exited status=1
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Failed to start The Apache HTTP Server.
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Unit httpd.service entered failed state.
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service failed.
+Hint: Some lines were ellipsized, use -l to show in full.
+[centos@ip-172-30-1-179 ~]$ vi /etc/httpd/conf/httpd-le-ssl.conf
+[centos@ip-172-30-1-179 ~]$ cd /etc/httpd
+[centos@ip-172-30-1-179 httpd]$ ls
+conf  conf.d  conf.modules.d  logs  modules  run  ssl_certs
+[centos@ip-172-30-1-179 httpd]$ cd conf
+[centos@ip-172-30-1-179 conf]$ ls
+1           httpd.conf_20181212  httpd.conf_backup_20201121  httpd.conf-bkp  httpd-le-ssl.conf  test2.adlabsimagica.com.conf
+httpd.conf  httpd.conf_20191108  httpd.conf-bak              httpd.conf.bkp  magic
+[centos@ip-172-30-1-179 conf]$ ls -l
+total 152
+-rw-r--r--  1 root root 12731 Dec 10  2021 1
+-rw-r--r--  1 root root 12849 Feb 27 08:05 httpd.conf
+-rw-r--r--. 1 root root 11798 Dec 12  2018 httpd.conf_20181212
+-rw-r--r--  1 root root 14295 Nov  8  2019 httpd.conf_20191108
+-rw-r--r--  1 root root 16958 Nov 20  2020 httpd.conf_backup_20201121
+-rw-r--r--  1 root root 14859 Nov 22  2019 httpd.conf-bak
+-rw-r--r--. 1 root root 12701 Dec 13  2018 httpd.conf-bkp
+-rw-r--r--. 1 root root 13945 Jan 23  2019 httpd.conf.bkp
+-rw-r--r--  1 root root   952 Feb 27 08:05 httpd-le-ssl.conf
+-rw-r--r--  1 root root 13064 Jan 27 17:37 magic
+-rw-r--r--. 1 root root   586 Dec 14  2018 test2.adlabsimagica.com.conf
+[centos@ip-172-30-1-179 conf]$ sudo cp httpd-le-ssl.conf httpd-le-ssl.conf.bak
+[centos@ip-172-30-1-179 conf]$ ls -l
+total 156
+-rw-r--r--  1 root root 12731 Dec 10  2021 1
+-rw-r--r--  1 root root 12849 Feb 27 08:05 httpd.conf
+-rw-r--r--. 1 root root 11798 Dec 12  2018 httpd.conf_20181212
+-rw-r--r--  1 root root 14295 Nov  8  2019 httpd.conf_20191108
+-rw-r--r--  1 root root 16958 Nov 20  2020 httpd.conf_backup_20201121
+-rw-r--r--  1 root root 14859 Nov 22  2019 httpd.conf-bak
+-rw-r--r--. 1 root root 12701 Dec 13  2018 httpd.conf-bkp
+-rw-r--r--. 1 root root 13945 Jan 23  2019 httpd.conf.bkp
+-rw-r--r--  1 root root   952 Feb 27 08:05 httpd-le-ssl.conf
+-rw-r--r--  1 root root   952 May 29 06:02 httpd-le-ssl.conf.bak
+-rw-r--r--  1 root root 13064 Jan 27 17:37 magic
+-rw-r--r--. 1 root root   586 Dec 14  2018 test2.adlabsimagica.com.conf
+[centos@ip-172-30-1-179 conf]$ sudo rm httpd-le-ssl.conf
+[centos@ip-172-30-1-179 conf]$ ls
+1           httpd.conf_20181212  httpd.conf_backup_20201121  httpd.conf-bkp  httpd-le-ssl.conf.bak  test2.adlabsimagica.com.conf
+httpd.conf  httpd.conf_20191108  httpd.conf-bak              httpd.conf.bkp  magic
+[centos@ip-172-30-1-179 conf]$ sudo systemctl status httpd.service
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: failed (Result: exit-code) since Mon 2023-05-29 05:59:06 UTC; 4min 26s ago
+     Docs: man:httpd(8)
+           man:apachectl(8)
+  Process: 17389 ExecStop=/bin/kill -WINCH ${MAINPID} (code=exited, status=1/FAILURE)
+  Process: 17387 ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND (code=exited, status=1/FAILURE)
+ Main PID: 17387 (code=exited, status=1/FAILURE)
+
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Starting The Apache HTTP Server...
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal httpd[17387]: AH00526: Syntax error on line 21 of /etc/httpd/conf/httpd-le-ssl.conf:
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal httpd[17387]: SSLCertificateFile: file '/etc/letsencrypt/live/aquamagicaa.com/cert.pem' does not e...s empty
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service: main process exited, code=exited, status=1/FAILURE
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal kill[17389]: kill: cannot find process ""
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service: control process exited, code=exited status=1
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Failed to start The Apache HTTP Server.
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Unit httpd.service entered failed state.
+May 29 05:59:06 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service failed.
+Hint: Some lines were ellipsized, use -l to show in full.
+[centos@ip-172-30-1-179 conf]$ sudo systemctl start httpd.service
+Job for httpd.service failed because the control process exited with error code. See "systemctl status httpd.service" and "journalctl -xe" for details.
+[centos@ip-172-30-1-179 conf]$ sudo systemctl restart httpd.service
+Job for httpd.service failed because the control process exited with error code. See "systemctl status httpd.service" and "journalctl -xe" for details.
+[centos@ip-172-30-1-179 conf]$ sudo systemctl restart httpd
+Job for httpd.service failed because the control process exited with error code. See "systemctl status httpd.service" and "journalctl -xe" for details.
+[centos@ip-172-30-1-179 conf]$ sudo systemctl status httpd.service
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: failed (Result: exit-code) since Mon 2023-05-29 06:03:54 UTC; 19s ago
+     Docs: man:httpd(8)
+           man:apachectl(8)
+  Process: 17530 ExecStop=/bin/kill -WINCH ${MAINPID} (code=exited, status=1/FAILURE)
+  Process: 17528 ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND (code=exited, status=1/FAILURE)
+ Main PID: 17528 (code=exited, status=1/FAILURE)
+
+May 29 06:03:54 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Starting The Apache HTTP Server...
+May 29 06:03:54 ip-172-30-1-179.ap-south-1.compute.internal httpd[17528]: httpd: Syntax error on line 381 of /etc/httpd/conf/httpd.conf: Could not open config...rectory
+May 29 06:03:54 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service: main process exited, code=exited, status=1/FAILURE
+May 29 06:03:54 ip-172-30-1-179.ap-south-1.compute.internal kill[17530]: kill: cannot find process ""
+May 29 06:03:54 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service: control process exited, code=exited status=1
+May 29 06:03:54 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Failed to start The Apache HTTP Server.
+May 29 06:03:54 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Unit httpd.service entered failed state.
+May 29 06:03:54 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: httpd.service failed.
+Hint: Some lines were ellipsized, use -l to show in full.
+[centos@ip-172-30-1-179 conf]$ ;s
+-bash: syntax error near unexpected token `;'
+[centos@ip-172-30-1-179 conf]$ ls
+1           httpd.conf_20181212  httpd.conf_backup_20201121  httpd.conf-bkp  httpd-le-ssl.conf.bak  test2.adlabsimagica.com.conf
+httpd.conf  httpd.conf_20191108  httpd.conf-bak              httpd.conf.bkp  magic
+[centos@ip-172-30-1-179 conf]$ ls -l
+total 152
+-rw-r--r--  1 root root 12731 Dec 10  2021 1
+-rw-r--r--  1 root root 12849 Feb 27 08:05 httpd.conf
+-rw-r--r--. 1 root root 11798 Dec 12  2018 httpd.conf_20181212
+-rw-r--r--  1 root root 14295 Nov  8  2019 httpd.conf_20191108
+-rw-r--r--  1 root root 16958 Nov 20  2020 httpd.conf_backup_20201121
+-rw-r--r--  1 root root 14859 Nov 22  2019 httpd.conf-bak
+-rw-r--r--. 1 root root 12701 Dec 13  2018 httpd.conf-bkp
+-rw-r--r--. 1 root root 13945 Jan 23  2019 httpd.conf.bkp
+-rw-r--r--  1 root root   952 May 29 06:02 httpd-le-ssl.conf.bak
+-rw-r--r--  1 root root 13064 Jan 27 17:37 magic
+-rw-r--r--. 1 root root   586 Dec 14  2018 test2.adlabsimagica.com.conf
+[centos@ip-172-30-1-179 conf]$ sudo vi httpf.conf
+[centos@ip-172-30-1-179 conf]$ sudo vi httpd.conf
+[centos@ip-172-30-1-179 conf]$ sudo systemctl restart httpd
+[centos@ip-172-30-1-179 conf]$ httpd -t
+Syntax OK
+[centos@ip-172-30-1-179 conf]$ sudo systemctl status httpd
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Mon 2023-05-29 06:07:16 UTC; 27s ago
+     Docs: man:httpd(8)
+           man:apachectl(8)
+  Process: 17530 ExecStop=/bin/kill -WINCH ${MAINPID} (code=exited, status=1/FAILURE)
+ Main PID: 17578 (httpd)
+   Status: "Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec"
+   CGroup: /system.slice/httpd.service
+           ├─17578 /usr/sbin/httpd -DFOREGROUND
+           ├─17579 /usr/sbin/httpd -DFOREGROUND
+           ├─17580 /usr/sbin/httpd -DFOREGROUND
+           ├─17581 /usr/sbin/httpd -DFOREGROUND
+           ├─17582 /usr/sbin/httpd -DFOREGROUND
+           ├─17583 /usr/sbin/httpd -DFOREGROUND
+           ├─17585 /usr/sbin/httpd -DFOREGROUND
+           └─17586 /usr/sbin/httpd -DFOREGROUND
+
+May 29 06:07:16 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Starting The Apache HTTP Server...
+May 29 06:07:16 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Started The Apache HTTP Server.
+[centos@ip-172-30-1-179 conf]$ ^C
+[centos@ip-172-30-1-179 conf]$ aquamagicaa.com
+-bash: aquamagicaa.com: command not found
+[centos@ip-172-30-1-179 conf]$ sudo systemctl restart httpd
+[centos@ip-172-30-1-179 conf]$ sudo systemctl status httpd
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Mon 2023-05-29 06:20:25 UTC; 11s ago
+     Docs: man:httpd(8)
+           man:apachectl(8)
+  Process: 17714 ExecStop=/bin/kill -WINCH ${MAINPID} (code=exited, status=0/SUCCESS)
+ Main PID: 17719 (httpd)
+   Status: "Total requests: 2; Current requests/sec: 0.222; Current traffic: 227 B/sec"
+   CGroup: /system.slice/httpd.service
+           ├─17719 /usr/sbin/httpd -DFOREGROUND
+           ├─17720 /usr/sbin/httpd -DFOREGROUND
+           ├─17721 /usr/sbin/httpd -DFOREGROUND
+           ├─17722 /usr/sbin/httpd -DFOREGROUND
+           ├─17723 /usr/sbin/httpd -DFOREGROUND
+           ├─17724 /usr/sbin/httpd -DFOREGROUND
+           ├─17725 /usr/sbin/httpd -DFOREGROUND
+           └─17726 /usr/sbin/httpd -DFOREGROUND
+
+May 29 06:20:25 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Starting The Apache HTTP Server...
+May 29 06:20:25 ip-172-30-1-179.ap-south-1.compute.internal systemd[1]: Started The Apache HTTP Server.
+[centos@ip-172-30-1-179 conf]$ ls
+1           httpd.conf_20181212  httpd.conf_backup_20201121  httpd.conf-bkp  httpd-le-ssl.conf.bak  test2.adlabsimagica.com.conf
+httpd.conf  httpd.conf_20191108  httpd.conf-bak              httpd.conf.bkp  magic
+[centos@ip-172-30-1-179 conf]$ sudo certbot
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator apache, Installer apache
+Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org
+
+Which names would you like to activate HTTPS for?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: aquamagicaa.com
+2: www.aquamagicaa.com
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate numbers separated by commas and/or spaces, or leave input
+blank to select all options shown (Enter 'c' to cancel): ^CExiting due to user request.
+[centos@ip-172-30-1-179 conf]$ uptime
+ 06:38:28 up 20:15,  1 user,  load average: 0.00, 0.03, 0.05
+[centos@ip-172-30-1-179 conf]$ 
+[centos@ip-172-30-1-179 conf]$ sudo certbot
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator apache, Installer apache
+Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org
+
+Which names would you like to activate HTTPS for?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: aquamagicaa.com
+2: www.aquamagicaa.com
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate numbers separated by commas and/or spaces, or leave input
+blank to select all options shown (Enter 'c' to cancel): 
+Requesting a certificate for aquamagicaa.com and www.aquamagicaa.com
+Performing the following challenges:
+http-01 challenge for aquamagicaa.com
+http-01 challenge for www.aquamagicaa.com
+Waiting for verification...
+Cleaning up challenges
+Created an SSL vhost at /etc/httpd/conf/httpd-le-ssl.conf
+Deploying Certificate to VirtualHost /etc/httpd/conf/httpd-le-ssl.conf
+Enabling site /etc/httpd/conf/httpd-le-ssl.conf by adding Include to root configuration
+Deploying Certificate to VirtualHost /etc/httpd/conf/httpd-le-ssl.conf
+Enhancement redirect was already set.
+Enhancement redirect was already set.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Congratulations! You have successfully enabled https://aquamagicaa.com and
+https://www.aquamagicaa.com
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Subscribe to the EFF mailing list (email: dcssupport@imagicaworld.com).
+Starting new HTTPS connection (1): supporters.eff.org
+An unexpected error occurred:
+TypeError: __str__ returned non-string (type Error)
+Please see the logfiles in /var/log/letsencrypt for more details.
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/aquamagicaa.com/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/aquamagicaa.com/privkey.pem
+   Your certificate will expire on 2023-08-27. To obtain a new or
+   tweaked version of this certificate in the future, simply run
+   certbot again with the "certonly" option. To non-interactively
+   renew *all* of your certificates, run "certbot renew"
+ - Some rewrite rules copied from /etc/httpd/conf/httpd.conf were
+   disabled in the vhost for your HTTPS site located at
+   /etc/httpd/conf/httpd-le-ssl.conf because they have the potential
+   to create redirection loops.
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+
+[centos@ip-172-30-1-179 conf]$ sudo certbot renew --dry-run
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Processing /etc/letsencrypt/renewal/aquamagicaa.com.conf
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Cert not due for renewal, but simulating renewal for dry run
+Plugins selected: Authenticator apache, Installer apache
+Starting new HTTPS connection (1): acme-staging-v02.api.letsencrypt.org
+Simulating renewal of an existing certificate for aquamagicaa.com and www.aquamagicaa.com
+Performing the following challenges:
+http-01 challenge for aquamagicaa.com
+http-01 challenge for www.aquamagicaa.com
+Waiting for verification...
+Cleaning up challenges
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+new certificate deployed with reload of apache server; fullchain is
+/etc/letsencrypt/live/aquamagicaa.com/fullchain.pem
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Congratulations, all simulated renewals succeeded: 
+  /etc/letsencrypt/live/aquamagicaa.com/fullchain.pem (success)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[centos@ip-172-30-1-179 conf]$ ls
+1           httpd.conf_20181212  httpd.conf_backup_20201121  httpd.conf-bkp  httpd-le-ssl.conf      magic
+httpd.conf  httpd.conf_20191108  httpd.conf-bak              httpd.conf.bkp  httpd-le-ssl.conf.bak  test2.adlabsimagica.com.conf
+[centos@ip-172-30-1-179 conf]$ cat httpd-le-ssl.conf
+<IfModule mod_ssl.c>
+<VirtualHost *:443>
+        ServerAdmin dcssupport@imagicaaworld.com
+        ServerName aquamagicaa.com
+        ServerAlias www.aquamagicaa.com
+	#Redirect / http://35.154.2.67/
+	#Redirect permanent / https://www.aquamagicaa.com/
+	DocumentRoot /var/www/html
+         ErrorLog logs/aquamagicaa.com-error_log
+         CustomLog logs/aquamagicaa.com-access_log common
+        <Directory /var/www/html>
+         AllowOverride All
+        #allow from all
+        Require all granted
+ 	#Options +Indexes +FollowSymLinks
+ 	Options  +FollowSymLinks
+        DirectoryIndex index.html index.htm index.php
+       </Directory>
+RewriteEngine on
+# Some rewrite rules in this file were disabled on your HTTPS site,
+# because they have the potential to create redirection loops.
+
+# RewriteCond %{SERVER_NAME} =aquamagicaa.com [OR]
+# RewriteCond %{SERVER_NAME} =aquamagicaa.com
+# #RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+# RewriteCond %{SERVER_NAME} =aquamagicaa.com [OR]
+# RewriteCond %{SERVER_NAME} =www.aquamagicaa.com
+# RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+Include /etc/letsencrypt/options-ssl-apache.conf
+SSLCertificateFile /etc/letsencrypt/live/aquamagicaa.com/cert.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/aquamagicaa.com/privkey.pem
+SSLCertificateChainFile /etc/letsencrypt/live/aquamagicaa.com/chain.pem
+</VirtualHost>
+</IfModule>
+[centos@ip-172-30-1-179 conf]$ cd
+[centos@ip-172-30-1-179 ~]$ sudo conf
+sudo: conf: command not found
+[centos@ip-172-30-1-179 ~]$ sudo cd conf
+/bin/cd: line 2: cd: conf: No such file or directory
+[centos@ip-172-30-1-179 ~]$ ls
+[centos@ip-172-30-1-179 ~]$ sudo /etc/httpd/conf
+sudo: /etc/httpd/conf: command not found
+[centos@ip-172-30-1-179 ~]$ sudo cd /etc/httpd/conf
+[centos@ip-172-30-1-179 ~]$ ls
+[centos@ip-172-30-1-179 ~]$ sudo cd /etc
+[centos@ip-172-30-1-179 ~]$ sudo su
+[root@ip-172-30-1-179 centos]# cd
+[root@ip-172-30-1-179 ~]# ls
+amazon-cloudwatch-agent.rpm  dontdelete         imagicaserver.key  install      original-ks.cfg               wp_aquamagica.sql
+anaconda-ks.cfg              getdata.php        inspector.gpg      install.1    spin2win_functions.php        wp-completion.bash
+custom_inquiry.sql           imagicaserver.csr  inspector.key      install.sig  visit_data_communication.php  wp_live_20220121.sql
+[root@ip-172-30-1-179 ~]# cd /etc
+[root@ip-172-30-1-179 etc]# ls
+adjtime                  csh.cshrc                groff        krb5.conf                 mtab               polkit-1          rpm            sudo-ldap.conf
+aliases                  csh.login                group        krb5.conf.d               my.cnf             pool.conf         rsyncd.conf    sysconfig
+aliases.db               dbus-1                   group-       ld.so.cache               my.cnf.d           popt.d            rsyslog.conf   sysctl.conf
+alternatives             default                  grub2.cfg    ld.so.conf                netconfig          postfix           rsyslog.d      sysctl.d
+amazon                   depmod.d                 grub.conf    ld.so.conf.d              NetworkManager     ppp               rwtab          systemd
+anacrontab               dhcp                     grub.d       letsencrypt               networks           prelink.conf.d    rwtab.d        system-release
+audisp                   DIR_COLORS               gshadow      libaudit.conf             nfs.conf           printcap          sasl2          system-release-cpe
+audit                    DIR_COLORS.256color      gshadow-     libnl                     nfsmount.conf      profile           scl            tcsd.conf
+bash_completion.d        DIR_COLORS.lightbgcolor  gss          libuser.conf              nsswitch.conf      profile.d         securetty      terminfo
+bashrc                   dracut.conf              gssproxy     locale.conf               nsswitch.conf.bak  protocols         security       tmpfiles.d
+binfmt.d                 dracut.conf.d            host.conf    locales.conf              odbc.ini           python            selinux        tuned
+centos-release           e2fsck.conf              hostname     localtime                 odbcinst.ini       qemu-ga           services       udev
+centos-release-upstream  environment              hosts        login.defs                openldap           rc0.d             sestatus.conf  vconsole.conf
+check_mk                 exports                  hosts.allow  logrotate.conf            opt                rc1.d             shadow         vimrc
+chkconfig.d              exports.d                hosts.deny   logrotate.d               os-release         rc2.d             shadow-        virc
+chrony.conf              favicon.png              httpd        machine-id                pam.d              rc3.d             shells         wgetrc
+chrony.keys              filesystems              idmapd.conf  magic                     passwd             rc4.d             skel           wpa_supplicant
+cloud                    firewalld                init         mailcap                   passwd-            rc5.d             ssh            X11
+cron.d                   fonts                    init.d       makedumpfile.conf.sample  php.d              rc6.d             ssl            xdg
+cron.daily               freetds.conf             inittab      man_db.conf               php.ini            rc.d              statetab       xinetd.conf
+cron.deny                fstab                    inputrc      mime.types                phpMyAdmin         rc.local          statetab.d     xinetd.d
+cron.hourly              gcrypt                   iproute2     mke2fs.conf               php-tcpdf          redhat-release    subgid         yum
+cron.monthly             GeoIP.conf               issue        modprobe.d                php-zts.d          request-key.conf  subuid         yum.conf
+crontab                  GeoIP.conf.default       issue.net    modulefiles               pkcs11             request-key.d     sudo.conf      yum.repos.d
+cron.weekly              gnupg                    kdump.conf   modules-load.d            pki                resolv.conf       sudoers
+crypttab                 GREP_COLORS              kernel       motd                      pm                 rpc               sudoers.d
+[root@ip-172-30-1-179 etc]# cd httpd
+[root@ip-172-30-1-179 httpd]# ls
+conf  conf.d  conf.modules.d  logs  modules  run  ssl_certs
+[root@ip-172-30-1-179 httpd]# cd conf
+[root@ip-172-30-1-179 conf]# ls
+1           httpd.conf_20181212  httpd.conf_backup_20201121  httpd.conf-bkp  httpd-le-ssl.conf      magic
+httpd.conf  httpd.conf_20191108  httpd.conf-bak              httpd.conf.bkp  httpd-le-ssl.conf.bak  test2.adlabsimagica.com.conf
+[root@ip-172-30-1-179 conf]# cd httpd-le-ssl.conf
+bash: cd: httpd-le-ssl.conf: Not a directory
+[root@ip-172-30-1-179 conf]# vi httpd-le-ssl.conf
+[root@ip-172-30-1-179 conf]# history
+   11  cd 
+   12  cd .ssh
+   13  ls -a
+   14  vi authorized_keys 
+   15  cd /home/
+   16  cd /home/
+   17  ls
+   18  cd centos
+   19  ls
+   20  ls -a
+   21  cd .ssh
+   22  ls
+   23  vi authorized_keys 
+   24  cd
+   25  cd /home/centos
+   26  ls
+   27  cd
+   28  chmod 700 centos
+   29  cd /home/
+   30  chmod 700 centos
+   31  ll
+   32  exit
+   33  visudo
+   34  adduser test
+   35  visudo
+   36  passwd centos
+   37  cd
+   38  cd centos
+   39  cd /home
+   40  ls 
+   41  rm -rf test
+   42  ls
+   43  rm -rf centosnew/
+   44  ls
+   45  du -sh 
+   46  cd
+   47  exit
+   48  ls
+   49  cd /
+   50  ls
+   51  cd home
+   52  ls
+   53  ll
+   54  cd /
+   55  ls -a
+   56  cd home 
+   57  ls -a
+   58  ls
+   59  cd centos
+   60  ll
+   61  cd .ssh
+   62  ls
+   63  ll
+   64  mysql -u imagicadb -p 
+   65  mysql -u root -p
+   66  mysql -u root -p ticketing_db < /var/www/html/adlabsimagica/book-now/ticketing_db4.sql 
+   67  ls
+   68  mysql
+   69  mysql root
+   70  mysql 
+   71  mysql
+   72  mysql -h 127.0.0.1 -u root -p 
+   73  mysql -h 127.0.0.1 -u root 
+   74  mysql -h 127.0.0.1 -u root
+   75  mysql version
+   76  mysql -- version
+   77  mysql 
+   78  mysql -
+   79  cd /var/spool/mail/root
+   80  cd /var/spool/mail/
+   81  ls
+   82  mysql -- version
+   83  mysql --version
+   84  sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+   85  sudo yum localinstall https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+   86  sudo yum install mysql-community-server
+   87  grep 'A temporary password' /var/log/mysqld.log |tail -1
+   88  /usr/bin/mysql_secure_installation
+   89  mysql -h 127.0.0.1 -u root -p
+   90  cd /etc/phpMyAdmin/
+   91  ls
+   92  vi config.inc.php 
+   93  vi config.inc.php
+   94  tar -xvzf /var/www/html/adlabsimagica/wp_imagica.sql.tar.gz /var/www/html/adlabsimagica/
+   95  cd /var/www/html/adlabsimagica
+   96  tar -xvzf wp_imagica.sql.tar.gz /var/www/html/adlabsimagica/
+   97  tar -xvzf wp_imagica.sql.tar.gz
+   98  find -type f -name wp_imagica.sql
+   99  find ./ -type f -name wp_imagica.sql
+  100  cd /var/www/html/
+  101  ls -l
+  102  cd ../
+  103  cd /var/www/html/adlabsimagica
+  104  ls -l
+  105  find ./ -type f -name wp_imagica.sql
+  106  tar -xvzf wp_imagica.sql.tar.gz /var/www/html/adlabsimagica/
+  107  tar -xvzf wp_imagica.sql.tar.gz /var/www/html/
+  108  tar -xvzf /var/www/html/adlabsimagica/wp_imagica.sql.tar.gz
+  109  cd /
+  110  tar -xvzf /var/www/html/adlabsimagica/wp_imagica.sql.tar.gz
+  111  mysql -u root -p wp_imagica_20210212 < wp_imagica.sql
+  112  mysql -u root -p wp_imagica_20210212 < /var/www/html/adlabsimagica/mnt/live_sites/adlabsimagica/wp_imagica.sql
+  113  cd /etc
+  114  ls -l
+  115  cd ..
+  116  sudo vi /etc/httpd/conf/httpd.conf
+  117  systemctl service httpd restart
+  118  systemctl httpd service restart
+  119  sudo systemctl restart httpd.service
+  120  sudo systemctl status httpd.service
+
+
+
+
+systemctl restart httpd
+  413  clear
+  414  cd /var
+  415  ls
+  416  cd www
+  417  ls
+  418  cd html/
+  419  ls
+  420  vi wp-config-sample.php 
+  421  vi wp-config.php 
+  422  vi wp-config.php 
+  423  lds
+  424  ls
+  425  cd /
+  426  ls
+  427  cd etc
+  428  ls
+  429  cd phpMyAdmin/
+  430  ls
+  431  vi config.inc.php 
+  432  vi config.inc.php 
+  433  systemctl restart httpd
+  434  vi config.inc.php 
+  435  ls
+  436  cd ..
+  437  ls
+  438  cd ..
+  439  clear
+  440  ls
+  441  clear
+  442  php --version
+  443  clear
+  444  sudo certbot --apache
+  445  ls
+  446  cd /var
+  447  ls
+  448  cd www/
+  449  ls
+  450  cd html/
+  451  ls
+  452  cd wp-config.php
+  453  vi wp-config.php
+  454  cd /etc
+  455  ls
+  456  cd ..
+  457  ls
+  458  cd etc
+  459  ls
+  460  sudo certbot --apache
+  461  ls
+  462  pwd
+  463  cd httpd/
+  464  ls
+  465  cd conf
+  466  ls
+  467  cd ..
+  468  cd ssl_certs/
+  469  ls
+  470  sudo certbot --apache -d test.aquamagicaa.com -d www.test.aquamagicaa.com
+  471  systemctl restart httpd
+  472  sudo certbot --apache
+  473  ls
+  474  cd ..
+  475  ls
+  476  cd conf.d
+  477  ls
+  478  cd ..
+  479  ls
+  480  cd conf
+  481  ls
+  482  ls -ltr
+  483  vi httpd.conf
+  484  vi httpd-le-ssl.conf 
+  485  sudo certbot --apache
+  486  vi httpd-le-ssl.conf 
+  487  sudo certbot --apache
+  488  systemctl restart httpd
+  489  clear
+  490  sudo su
+  491  clear
+  492  ls
+  493  cd /
+  494  ls
+  495  cd var
+  496  ls
+  497  cd www
+  498  ls
+  499  cd html
+  500  ls
+  501  chown -R www-data:www-data wp-content/
+  502  ls -ltr
+  503  cd wp-content/
+  504  ls
+  505  ll
+  506  cd ..
+  507  ls
+  508  chown -R apache:apache wp-content/
+  509  chown -R apache:apache wp-admin
+  510  chown -R apache:apache wp-includes
+  511  clear
+  512  cd .ssh/
+  513  cd /
+  514  clear
+  515  ls -a
+  516  cd .ssh/
+  517  cd admin
+  518  ls
+  519  cd home
+  520  ls
+  521  clear
+  522  ls
+  523  cd centos/
+  524  ls
+  525  clear
+  526  cd .ssh/
+  527  ls
+  528  cat authorized_keys
+  529  clear
+  530  ls
+  531  cd /
+  532  ls
+  533  cd var
+  534  ls
+  535  cd www
+  536  ls
+  537  cd html
+  538  ls
+  539  ll
+  540  cd wp-content/
+  541  ls
+  542  ll
+  543  cd ..
+  544  getfacl wp-content/
+  545  ll
+  546  cd wp-content/
+  547  ll
+  548  cd plugins/
+  549  ls
+  550  cd ..
+  551  ll
+  552  ls -ltr
+  553  cd plugins/
+  554  ls
+  555  ls -ltr
+  556  cd ..
+  557  ls
+  558  ll
+  559  getfacl plugins/
+  560  setfacl -R -m u:centos:rwx plugins
+  561  ls
+  562  ll
+  563  cd ..
+  564  ls
+  565  cd ..
+  566  ls
+  567  setfacl -R -m u:centos:rwx html
+  568  ls
+  569  cd ..
+  570  clear
+  571  sudo su
+  572  crontab -e
+  573  php -v
+  574  php -version
+  575  php -V
+  576  curl -help
+  577  curl -V
+  578  curl https://test.aquamagica.com/book-now/cron_send_confirmation_email.php
+  579  curl https://test.aquamagicaa.com/book-now/cron_send_confirmation_email.php
+  580  curl https://www.test.aquamagicaa.com/book-now/cron_send_confirmation_email.php
+  581  rm -f /var/www/html/book-now/pdf/*
+  582  exit;
+  583  crontab -e
+  584  rm /tmp/cron_send_confirmation_email.log 
+  585  crontab -e
+  586  curl https://www.test.aquamagicaa.com/book-now/cron_send_confirmation_email.php
+  587  php /var/www/html/book-now/cron_send_confirmation_email.php
+  588  rm /var/www/html/book-now/pdf/*
+  589  cd /var/www/html/book-now/pdf
+  590  rm *
+  591  rm *.*
+  592  cd /
+  593  cd .
+  594  sudo -i
+  595  exit;
+  596  mysql
+  597  mysql -u
+  598  mysql -u imagicadb -p
+  599  exit;
+  600  mv /var/www/html/book-now/ticketing_db\ \(5\).sql /var/lib/phpMyAdmin/upload/
+  601  cd /var/lib/phpMyAdmin/upload
+  602  ls -l
+  603  rm ticketing_db\ \(5\).sql 
+  604  ls -l
+  605  exit;
+  606  mysql -u root -p
+  607  mysql
+  608  sudo -u
+  609  exit;
+  610  clear
+  611  sudo certbot --apache
+  612  clear
+  613  sudo nano /etc/apache2/sites-available/aquamagicaa.com.conf
+  614  sudo nano /etc/apache2/sites-available/
+  615  sudo vi /etc/apache2/sites-available/
+  616  sudo vi /etc/apache2/sites-available/aquamagicaa.com.conf
+  617  clear
+  618  sudo nano /etc/apache2/sites-available/aquamagicaa.com.conf
+  619  sudo vi /etc/apache2/sites-available/aquamagicaa.com.conf
+  620  clear
+  621  vi /etc/apache2/sites-available/aquamagicaa.com.conf
+  622  clear
+  623  cd /etc/apache2/sites-available/
+  624  cd /etc/apache2/
+  625  clear
+  626  ls
+  627  cd /etc
+  628  ls
+  629  cd httpd
+  630  ls
+  631  cd conf
+  632  ls
+  633  cd /
+  634  ls
+  635  cd var
+  636  ;s
+  637  ls
+  638  cd home
+  639  cd ..
+  640  ls
+  641  cd home
+  642  ls
+  643  cd centos/
+  644  ls
+  645  clear
+  646  sudo nano /etc/httpd/sites-available/aquamagicaa.com.conf
+  647  sudo vi /etc/httpd/sites-available/aquamagicaa.com.conf
+  648  clear
+  649  sudo vim /etc/httpd/sites-available/aquamagicaa.com.conf
+  650  clear
+  651  sudo certbot --apache -d aquamagicaa.com
+  652  sudo certbot --apache
+  653  clear
+  654  ls
+  655  cd etc
+  656  cd etc/
+  657  clear
+  658  ls
+  659  pwd
+  660  cd /etc
+  661  ls
+  662  cd httpd
+  663  clear
+  664  ls
+  665  cd conf.d
+  666  ls
+  667  cd ..
+  668  ls
+  669  cd conf
+  670  ls
+  671  cat httpd.conf
+  672  clear
+  673  ls
+  674  cat test2.adlabsimagica.com.conf
+  675  cat httpd.conf_20191108
+  676  clear
+  677  ls
+  678  cat magic
+  679  clear
+  680  ls
+  681  cat httpd.conf_20181212
+  682  clear
+  683  cd ..
+  684  ls
+  685  cd ssl_certs
+  686  ls
+  687  cd ..
+  688  ls
+  689  cd conf
+  690  ls
+  691  cd ..
+  692  ls
+  693  cd conf.d
+  694  ls
+  695  cat ssl.conf
+  696  clear
+  697  cd /
+  698  ls
+  699  cd home
+  700  clear
+  701  ls
+  702  cd centos/
+  703  ls
+  704  clear
+  705  sudo yum install epel-release
+  706  cd /ect
+  707  cd /etc
+  708  ls
+  709  cd ..
+  710  ls
+  711  cd home/centos
+  712  clear
+  713  sudo yum install certbot python2-certbot-apache mod_ssl
+  714  sudo certbot --httpd -d aquamagicaa.com
+  715  clear
+  716  sudo certbot --apache2 -d aquamagicaa.com
+  717  sudo certbot -- apache2 -d aquamagicaa.com
+  718  clear
+  719  sudo certbot --apache
+  720  ls
+  721  cd /var
+  722  ls
+  723  cd www
+  724  ls
+  725  cd html/
+  726  ls
+  727  cd /etc/
+  728  ls
+  729  cd httpd/
+  730  ls
+  731  cd ssl_certs/
+  732  ls
+  733  cd /etc/httpd/
+  734  ls
+  735  clear
+  736  sudo certbot --apache2 -d aquamagicaa.com
+  737  sudo certbot --httpd -d aquamagicaa.com
+  738  sudo certbot --apache -d aquamagicaa.com -d www.aquamagicaa.com
+  739  sudo certbot --apache2 -d aquamagicaa.com
+  740  clear
+  741  clear
+  742  systemctl restart httpd
+  743  clear
+  744  sudo certbot --apache -d aquamagicaa.com
+  745  sudo certbot --apache -d aquamagicaa.com
+  746  clear
+  747  sudo vim /etc/httpd/sites-available/aquamagicaa.com.conf
+  748  sudo vi /etc/httpd/sites-available/aquamagicaa.com.conf
+  749  clear
+  750  ls
+  751  sudo certbot --apache -d aquamagicaa.com -d www.aquamagicaa.com
+  752  systemctl restart httpd service
+  753  systemctl restart httpd
+  754  clear
+  755  sudo certbot --apache -d aquamagicaa.com
+  756  clear
+  757  ls
+  758  cd /var
+  759  ls
+  760  cd /etc
+  761  ls
+  762  cd httpd
+  763  ls
+  764  clear
+  765  ls
+  766  cd conf
+  767  ls
+  768  cd httpd.conf
+  769  cat httpd.conf
+  770  sudo certbot --apache
+  771  clear
+  772  sudo certbot --apache
+  773  clear
+  774  ls
+  775  cat test2.adlabsimagica.com.conf 
+  776  clear
+  777  ls
+  778  cd ..
+  779  ls
+  780  cd conf.d
+  781  ls
+  782  sudo nano /etc/apache2/sites-available/aquamagicaa.com.conf
+  783  vi /etc/apache2/sites-available/aquamagicaa.com.conf
+  784  sudo vi /etc/apache2/sites-available/aquamagicaa.com.conf
+  785  clear
+  786  ls
+  787  cat phpMyAdmin.conf
+  788  clear
+  789  exit
+  790  vi /etc/httpd/conf/httpd.conf
+  791  vi /etc/httpd/conf/httpd-le-ssl.conf
+  792  systemctl restart httpd
+  793  service httpd restart
+  794  systemctl status httpd.service
+  795  vi /etc/httpd/conf/httpd.conf
+  796  vi /etc/httpd/conf/httpd-le-ssl.conf
+  797  systemctl restart httpd
+  798  systemctl status httpd.service
+  799  vi /etc/httpd/conf/httpd.conf
+  800  systemctl restart httpd
+  801  systemctl status httpd.service
+  802  exit;
+  803  sudo su
+  804  ls
+  805  clear
+  806  ls
+  807  mysql -u root -p
+  808  clear
+  809  sudo certbot --apache -d aquamagicaa.com
+  810  sudo certbot --httpd -d aquamagicaa.com
+  811  clear
+  812  sudo certbot --httpd -d aquamagicaa.com
+  813  clear
+  814  systemctl restart apache2
+  815  systemctl restart httpd
+  816  systemctl status httpd.service
+  817  systemctl start httpd.service
+  818  systemctl restart httpd.service
+  819  clear
+  820  systemctl status httpd.service
+  821  systemctl restart httpd.service
+  822  systemctl status httpd.service
+  823  systemctl restart httpd.service
+  824  systemctl restart apache2
+  825  systmctl restart apache2.service 
+  826  clear
+  827  cd /opt/letsencrypt
+  828  sudo -H ./letsencrypt-auto certonly --standalone -d aquamagicaa.com -d www.aquamagicaa.com
+  829  clear
+  830  sudo certbot --apache -d aquamagicaa.com
+  831  sudo certbot renew --dry-run
+  832  systemctl restart httpd
+  833  sudo certbot --apache -d aquamagicaa.com
+  834  clear
+  835  systemctl restart httpd
+  836  clear
+  837  sudo vi /etc/httpd/conf.d/aquamagicaa.com
+  838  ls
+  839  cd etc
+  840  cd etc/
+  841  cd /etc/
+  842  ls
+  843  cd httpd/
+  844  ls
+  845  cd conf
+  846  cd .
+  847  cd ..
+  848  cd conf.d
+  849  ls
+  850  sudo certbot --apache
+  851  systemctl restart httpd
+  852  ls
+  853  crontab -e
+  854  exit;
+  855  clear
+  856  cd /etc
+  857  ls
+  858  cd httpd/
+  859  ls
+  860  cd conf
+  861  ls
+  862  cat test2.adlabsimagica.com.conf
+  863  cat magic
+  864  clear
+  865  ls
+  866  cat httpd.conf_20181212
+  867  clear
+  868  ls
+  869  cat httpd.conf_backup_20201121
+  870  clear
+  871  sudo su
+  872  1121
+  873  clear
+  874  clear
+  875  cd /var
+  876  ls
+  877  cd..
+  878  cd ..
+  879  ls
+  880  cd /etc
+  881  ls
+  882  cd httpd/
+  883  ls
+  884  cd conf.d/
+  885  ls
+  886  cat phpMyAdmin.conf
+  887  ls
+  888  cd ..
+  889  ls
+  890  cd conf
+  891  ls
+  892  cat  httpd.conf
+  893  clear
+  894  cd ..
+  895  cd /var
+  896  ls
+  897  cd www/
+  898  ls
+  899  cd html/
+  900  ls
+  901  cd wp-config.php
+  902  cat wp-config.php
+  903  clear
+  904  cd /
+  905  ls
+  906  cd home
+  907  ls
+  908  cd centos/
+  909  ls
+  910  clear
+  911  mysql -h aquamagica-database-server.cpiqs8cjwcl9.ap-south-1.rds.amazonaws.com -P 3306 -u imagicadb -p
+  912  mysql -h aquamagica-database-server.cpiqs8cjwcl9.ap-south-1.rds.amazonaws.com -P 3306 -u imagicadb -p
+  913  mysql
+  914  mysql
+  915  mysql -h aquamagica-database-server.cpiqs8cjwcl9.ap-south-1.rds.amazonaws.com -u imagicadb
+  916  mysql -h aquamagica-database-server.cpiqs8cjwcl9.ap-south-1.rds.amazonaws.com -u imagicadb -p
+  917  mysql -h aquamagica-database-server.cpiqs8cjwcl9.ap-south-1.rds.amazonaws.com -u imagicadb -p wp_imagica_20210212 > wp_aquamagica.sql
+  918  mysql -h aquamagica-database-server.cpiqs8cjwcl9.ap-south-1.rds.amazonaws.com -u imagicadb -p wp_imagica_20210212 > /var/www/html/book-now/wp_aquamagica.sql
+  919  mysqldump -h aquamagica-database-server.cpiqs8cjwcl9.ap-south-1.rds.amazonaws.com -u imagicadb -p wp_imagica_20210212 > /var/www/html/book-now/wp_aquamagica.sql
+  920  cd /var/www/html/book-now
+  921  ls -l
+  922  tar cvzf wp_aquamagica.sql.tar.gz wp_aquamagica.sql 
+  923  clear
+  924  ls
+  925  cd /etc
+  926  ls
+  927  clear
+  928  ls
+  929  cd h
+  930  cd httpd/
+  931  ls
+  932  cd conf.d/
+  933  ls
+  934  vi aquamagicaa.com
+  935  sudo certbot --httpd -d aquamagicaa.com -d www.aquamagicaa.com
+  936  sudo certbot --apache -d aquamagicaa.com -d www.aquamagicaa.com
+  937  clear
+  938  sysyemctl restart httpd
+  939  sysyemctl httpd restart
+  940  systemctl restart httpd
+  941  sudo certbot --apache
+  942  sudo certbot --apache
+  943  clear
+  944  systemctl restart httpd
+  945  ls
+  946  vi aquamagicaa.com 
+  947  sudo certbot --apache
+  948  systemctl restart httpd
+  949  systemctl restart httpd service
+  950  systemctl restart httpd
+  951  sudo certbot --apache -d aquamagicaa.com -d www.aquamagicaa.com
+  952  systemctl restart httpd
+  953  clear
+  954  ls
+  955  vi aquamagicaa.com 
+  956  clear
+  957  sudo certbot --apache -d aquamagicaa.com
+  958  systemctl restart httpd
+  959  clear
+  960  vi /etc/httpd/conf/httpd.conf
+  961  clear
+  962  ls
+  963  cd /etc
+  964  ls
+  965  cd httpd/
+  966  ls
+  967  cd conf
+  968  ls
+  969  vi httpd.conf
+  970  systemctl restart httpd
+  971  clear
+  972  ls
+  973  cat httpd.conf
+  974  vi httpd.conf
+  975  systemctl restart httpd
+  976  cat httpd.conf
+  977  vi httpd.conf
+  978  systemctl restart httpd
+  979  vi httpd.conf
+  980  systemctl restart httpd
+  981  clear
+  982  sudo certbot --apache -d aquamagicaa.com -d www.aquamagicaa.com
+  983  systemctl restart httpd
+  984  crontab -e
+  985  exit;
+  986  cd
+  987  ls
+  988  df -h
+  989  cd
+  990  df -h
+  991  cd /var/log/httpd
+  992  ls -l
+  993  rm imagicaaworld.com-error_log 
+  994  ls -l
+  995  df -h
+  996  cd
+  997  df -h
+  998  top
+  999  df -h
+ 1000  cd
+ 1001  ls
+ 1002  cd /etc
+ 1003  ls
+ 1004  cd httpd
+ 1005  ls
+ 1006  cd conf
+ 1007  ls
+ 1008* 
+ 1009  vi httpd-le-ssl.conf

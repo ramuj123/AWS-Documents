@@ -1,0 +1,154 @@
+# For this code to work you must have an existing EC2 server and a launch template created along with an autoscaling server.
+import os
+import boto3
+import random,string
+from datetime import datetime
+
+ 
+
+ 
+
+ 
+
+def lambda_handler(event, context):
+
+ 
+
+    ''' The below variables need to be specified as environment variables. '''
+    instance_id = os.environ['INSTANCE_ID']                             
+    launch_template_name = os.environ['LAUNCH_TEMPLATE_NAME']
+    autoscaling_group_name = os.environ['AUTOSCALING_GROUP_NAME']
+    instance_name = os.environ['INSTANCE_NAME']
+
+ 
+
+    #Calling the functions and returning success in case of completion
+    try:
+        update_launch_template(instance_id, launch_template_name, autoscaling_group_name, instance_name)
+        print('Successfully updated the launch template')
+    except:
+        print('Error occured while updating the launch update')
+
+ 
+
+ 
+
+ 
+
+    try:
+        update_tags_asg(instance_name, autoscaling_group_name)
+        print('Successfully updated the autoscaling group tags.')
+    except:
+        print('Error occured while updating tags on autoscaling group name.')
+
+ 
+
+ 
+
+ 
+
+def update_launch_template(instance_id, launch_template_name, autoscaling_group_name, instance_name):
+    ec2_client = boto3.client('ec2')
+    length_lt = 9
+
+ 
+
+ 
+
+ 
+
+    # create a string of all possible characters
+    all_chars = string.digits + string.ascii_letters
+
+ 
+
+ 
+
+ 
+
+    # generate the random string
+    random_string = ''.join(random.choice(all_chars) for i in range(length_lt))
+    # specify the name and description of the image
+    image_name = instance_id + random_string
+    image_description = 'This is EC2 image for launch template updation'
+
+ 
+
+ 
+
+ 
+
+    # create the image
+    response = ec2_client.create_image(
+        InstanceId=instance_id,
+        Name=image_name,
+        NoReboot=True,
+        Description=image_description
+    )
+    image_id = response['ImageId']
+
+ 
+
+ 
+
+ 
+
+    # wait for the image to be created
+    waiter = ec2_client.get_waiter('image_available')
+    res = waiter.wait(
+        Filters=[
+            {
+                'Name': 'image-id',
+                'Values': [image_id]
+            }
+        ]
+    )
+
+ 
+
+    response = ec2_client.create_launch_template_version(
+        LaunchTemplateName=launch_template_name,
+        SourceVersion='$Latest',
+        LaunchTemplateData={
+            'ImageId': image_id
+        }
+    )
+
+ 
+
+    response = ec2_client.modify_launch_template(
+        LaunchTemplateName=launch_template_name,
+        DefaultVersion='$Latest'
+    )
+
+ 
+
+def update_tags_asg(instance_name, autoscaling_group_name):
+
+ 
+
+    asg_client = boto3.client('autoscaling')
+    tag_value = instance_name + datetime.today().strftime('-%m-%d-%Y')
+    print(tag_value)
+    # Define the new tags
+    tags = [
+        {
+            'Key': 'Name',
+            'Value': tag_value,
+            'PropagateAtLaunch': True
+        }
+    ]
+
+ 
+
+ 
+
+ 
+
+    # Update the tags
+    response = asg_client.create_or_update_tags(
+        Tags=tags,
+        ResourceId=autoscaling_group_name,
+        ResourceType='auto-scaling-group'
+    )
+    print(response)

@@ -1,0 +1,28 @@
+* After installation of Mysql package need to create Mysql User steps to create Mysql user
+
+1) create username with 'Mysql'and with password '9n3!A31q'.
+=>create user 'Mysql'@'%' identified by '9n3!A31q';  
+
+2) This grants all available privileges to the specified user.
+ON *.*: The asterisks (*) represent all databases and tables, granting privileges across the entire MySQL server.
+TO 'tolkien'@'%': This specifies the user and the host from which the user is allowed to connect.
+  Granted permission to all i.e *.*
+=>GRANT ALL PRIVILEGES ON *.* TO 'Mysql'@'%';
+
+3)refresh the user
+=>flush privileges;
+=>exit;
+
+***************************************************************************************************
+
+
+* connect command to mysql using username:
+
+=>mysql -u Mysql -p
+=>enter password:
+
+***************************************************************************************************
+
+* Permission given to html of centos user and centos group
+
+=>sudo chown centos:centos html -R

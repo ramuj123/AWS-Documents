@@ -1,0 +1,49 @@
+provider "aws" {
+  access_key = "AKIAVPBXOPWSFCOYNL6P"
+  secret_key = "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"
+  region     = "ap-south-1"
+}
+resource "aws_security_group" "Teraaform-ec2-server-roshan" {
+  name        = "Teraaform-ec2-server-roshan"
+  description = "security group"
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+ ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags= {
+    Name = "Teraaform-ec2-server-roshan"
+  }
+}
+resource "aws_instance" "Teraaform-ec2-server-roshan" {
+  ami           = "ami-0912f71e06545ad88"
+  instance_type = "t2.medium"
+  count=5
+  security_groups= ["Teraaform-ec2-server-roshan"]
+  key_name = "TerraForm_Roshan"
+  
+  tags = {
+    Name = "Teraaform-ec2-server-roshan"
+  }
+}

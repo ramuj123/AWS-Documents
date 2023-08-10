@@ -1,0 +1,33 @@
+Ticket Creating Template.
+
+************************************************************************************************
+Hi,
+
+Thank you for contacting TeleGlobal Internatioanl Pvt Ltd!
+
+We have generated a support ticket for the task.
+
+Ticket Number : 
+
+If you wish to add more information to this ticket, please reply to this email.
+
+
+
+
+_________________________________________________________________________________________________
+
+Support Closing Template.
+
+*************************************************************************************************
+
+Hello
+
+As per the update from our Tech team issue has been resolved, hence we are closing this Ticket.
+
+If you have any issues, you can re-open this ticket in the next 24hrs by replying to this email.No reply would be considered as successful task completion. 
+
+For any future issues, you can always reach out to us and raise a new ticket at support@teleglobals.com,by sending an Email.
+
+
+
+

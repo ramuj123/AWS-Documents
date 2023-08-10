@@ -1,0 +1,34 @@
+                             
+**************************************************** To sync old data************************************************************************************************
+									 
+					aws s3 sync s3://mybucket s3://backup-mybucket				 
+					
+					
+*****************************************************To Create a S3 Bucket from CLI***********************************************************************************
+															
+  To Create a Bucket in S3
+  
+                         aws s3 mb s3://myfirstdebobucket --region ap-south-1
+						 
+						 
+To move data from LocalPc to S3
+
+                        aws s3 cp D:\music_demo s3://myfirstdebobucket --recursive
+						
+						
+					
+****************************************Policy to make Bucket Public****************************************************************************************************
+
+   {
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource":"arn:aws:s3:::demoreact2412/*"
+    }
+  ]	
+ }
+ 

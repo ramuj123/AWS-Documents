@@ -1,0 +1,8 @@
+$ sudo vi /etc/fstab
+
+fs-00cc754d86f358fb9.efs.ap-southeast-1.amazonaws.com:/ /efs nfs defaults,_netdev 0 0
+
+sudo mount -fav
+
+umount -f /usr/bin/efs 
+

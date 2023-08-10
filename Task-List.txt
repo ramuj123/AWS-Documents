@@ -1,0 +1,21 @@
+ user id - jadesy@acrossgracealley.com
+
+ pw - Roshan@123
+
+ 2= Created two ec2 insance and attch the loadbalancer
+ 3= Deploy Reactjs APP with S3 Static Hosting.
+ 4= EC2 -> LB -> ACM -> Route53
+ 6= S3-> CloudFront -> Waf
+ 7= S3 replication
+ 8= VPC [ private subnet , public subnet , internet gateway , nat gateway , VPC peering ]
+ 9= S3 Stactic Website ( convert url to https )
+ 10= s3(http) -> cloudfront -> route53 (https)
+ 
+
+
+Website BAckup into  S3 using shell script automation.
+vertiual host and  lets encrypt certificatre
+Vpc , Open Vpn , Nate Gate way
+Windows  server  creation
+
+	

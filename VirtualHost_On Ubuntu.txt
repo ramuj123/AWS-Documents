@@ -1,0 +1,30 @@
+sudo apt-get update
+
+sudo apt-get upgrade
+
+sudo apt install apache2
+
+cd /var/www
+
+sudo mkdir -p test.rshopping.xyz/public_html        ----  you can repeat if you want to make multiple website
+
+sudo chown -R $USER:$USER test.rshopping.xyz/public_html
+
+vi /var/www/test.rshopping.xyz/public_html/index.html    ---- Write piece of content to be display on browser
+
+cd /etc/apache2/sites-available
+
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/test.rshopping.xyz.conf
+
+vi test.rshopping.xyz
+------------------------------------------------------
+ServerName    test.rshopping.xyz
+ServerAlias   test.rshopping.xyz
+DocumentRoot  /var/www/test.rshopping.xyz/public_html
+ServerAdmin   info@test.rshopping.xyz
+------------------------------------------------------
+sudo a2ensite test.rshopping.xyz.conf
+
+sudo a2dissite 000-default.conf
+
+sudo service apache2 restart

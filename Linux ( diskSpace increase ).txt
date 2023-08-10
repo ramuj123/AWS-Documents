@@ -1,0 +1,21 @@
+df -hT
+
+
+
+lsblk
+
+
+
+sudo mount -o size=10M,rw,nodev,nosuid -t tmpfs tmpfs /tmp ------------( Temp.space is allocated )
+
+
+
+sudo growpart /dev/nvme0n1 1 -----------( Mount the space )
+
+
+
+sudo resize2fs /dev/nvme0n1p1 -----------( resize the space )
+
+
+
+sudo umount /tmp

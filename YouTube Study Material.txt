@@ -1,0 +1,10 @@
+https://www.youtube.com/watch?v=-_2wCN5heXw&list=PLg-gHOIXThmOJAYY9f7RXpiJwr5Et4SvY&index=38&t=68s   { Translating documents with Amazon Translate, AWS Lambda }
+
+https://www.youtube.com/watch?v=wGjdTKQnG4g  || https://www.youtube.com/watch?v=O_P0oraE87M  { MediaConveter }
+
+https://medium.com/serverlessguru/deploy-reactjs-app-with-s3-static-hosting-f640cb49d7e6  { Deploy ReactJS App with S3 Static Hosting }
+
+https://youtu.be/3MBUetsrOJg || https://youtu.be/kc8TuRDoJ3s {Sumit}
+
+https://www.youtube.com/watch?v=aqzdIWlbqxM {SSO}
+

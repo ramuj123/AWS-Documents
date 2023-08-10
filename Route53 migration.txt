@@ -1,0 +1,29 @@
+1.Download cli53 on Windows.
+
+2.Create IAM USer on AWS Console ( Route53FullAccess )
+
+3.https://sdk.rackspace.com/blog/Migrate-AWS-DNS-records-by-using-cli53/
+
+4.https://github.com/barnybug/cli53/releases/tag/0.8.12
+
+*****************************Source AWS Account ***********************************
+
+cd downloads
+
+cli53-windows-386.exe list
+
+cli53-windows-386.exe export ( ZONE ID ) > D:\Route53\rvj.txt
+
+Remove SOA and NS From the File & Save it.
+
+********************************Target AWS Account *************************************
+
+cli53-windows-386.exe list
+
+cli53-windows-386.exe create <hosted-zone name>
+
+cli53-windows-386.exe import --file </path/to/file> <hosted-zone-name>
+
+
+
+https://medium.com/nerd-for-tech/ebs-snapshot-management-using-aws-lambda-and-cloudwatch-d961fdbe3772

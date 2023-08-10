@@ -1,0 +1,54 @@
+*how to set crontab to delete php-sections*
+
+1)create on floder unde root such as teleglobal { cd / }
+
+2)under teleglobal floder created on file such as phpsections.py under this floder uploaded phyton below script:- { vi phpsections.py } { Excustive permission chmod +x file name }
+
+
+import os
+import glob
+
+for i in range(5):
+        try:
+           files = glob.glob("/var/lib/php/sessions/*")
+           for f in files:
+               os.remove(f)
+        except Exception as e:
+            None
+
+3) permission { sudo chmod 777  phpsections.py }
+
+4) python3 phpsections.py { To delete session }
+
+5) ls | wc -l { to check php session count }
+
+
+__________End______________
+
+How To set crontab
+
+1)using crontab command corntab -e
+
+0 */8 * * * /usr/bin/python3 /teleglobal/phpsections.py   ------------using this cron job deleted Run python code in every 08hrs
+
+sudo systemctl enable cron ------------to start crontab
+
+ ls | wc -l-------------Checking total Php-sections
+
+________________End____________________________
+
+
+* */8 * * * /usr/bin/python3 /teleglobal/phpsessions.py------------another way(Doing POC 100% Excute)
+
+let 
+/usr/bin/python3=which python3
+
+
+
+
+grep CRON /var/log/syslog
+
+
+
+
+

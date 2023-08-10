@@ -1,0 +1,101 @@
+Shared Server with two Website and one database
+
+1= Create a Lamp Server 
+ 
+                Login to CMD witth SSH on ubuntu server
+				
+				sudo apt update && sudo apt upgrade
+				
+				sudo apt install apache2
+				
+				sudo apt install mysql-server
+				
+				sudo apt install php libapache2-mod-php php-mysql
+				
+				sudo apt install php-curl php-json php-cgi
+				
+				ufw status { inactive - to check firewall }
+				
+				sudo a2dismod mpm_event
+				sudo a2enmod mpm_prefork
+				
+				sudo systemctl restart apache2
+				
+				cd /etc/apache2/sites-available/
+				
+				ls { will avaiable to see default dir }
+				
+				cp 000-default.conf rshopping.xyz.conf
+				vi rshopping.xyz.conf    (   Configration file of virtual host  )
+				
+				
+				
+				
+				
+  
+                mkdir /var/www/html/rshopping.xyz
+				mkdir /var/www/html/rshopping.xyz/public_html
+				
+				chown -R www-data:www-data /var/www/html/rshopping.xyz/public_html
+				chmod -R 755 /var/www/html/rshopping.xyz/public_html/
+				
+				ls
+				
+				a2ensite rshopping.xyz.conf
+				systemctl reload apache2
+				
+**********************************************************************************************************************************
+install SQL
+   
+       mysql_secure_installation
+
+       pwd = root
+
+      mysql -u root -p
+      
+      CREATE DATABASE webdata;
+      CREATE USER 'webuser' IDENTIFIED BY 'password';
+      GRANT ALL ON webdata.* TO 'webuser';	  
+                				
+	  quit  
+
+
+**********************************************************************************************************************************
+
+	             sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc
+				 
+				 Now for other domain =  roshanaws.tk
+				 cp rshopping.xyz.conf roshanaws.tk.conf
+				 vi roshanaws.tk.conf
+				 mkdir /var/www/html/roshanaws.tk
+				 mkdir /var/www/html/roshanaws.tk/public_html
+				 a2ensite roshanaws.tk
+				 systemctl reload apache2
+				 chown -R www-data:www-data /var/www/html/roshanaws.tk/public_html
+				 chmod -R 755 /var/www/html/roshanaws.tk/public_html/
+				 
+************************************************************************************************************************************
+
+						Install WordPress
+						
+				cd 	/var/www/html/roshanaws.tk/public_html   
+				wget https://wordpress.org/latest.zip        
+				apt-get install zip                          
+				unzip latest.zip                             
+				ls
+				mv wordpress/* .
+				ls -la
+*********************************************************************************************
+Next stept to add wp in dir:-
+
+      chown -R www-data:www-data /var/www/html/roshanaws.tk/public_html
+      cd 	/var/www/html/roshanaws.tk/public_html
+	  wget https://wordpress.org/latest.zip
+	  unzip latest.zip
+	  
+				
+		roshanaws          mdNAhAb$yGK5@)ZKg$
+        rshopping		   9%AxpKji*tZ#yUR9c)
+		
+		
+		

@@ -1,0 +1,26 @@
+sudo su
+yum update -y
+yum install httpd -y
+systemctl start httpd
+vim /var/www/html/index.html
+
+<html>
+<head>
+<title>
+My First Web page
+</title>
+</head>
+<body>
+Welocome to SixPro World !!!! THANK YOU !!!!
+</body>
+</html>
+
+:wq
+
+systemctl restart httpd
+
+********************************X-Forwader******************************************************
+
+
+%{X-Forwarded-For}i %{X-Forwarded-Proto}i %{X-Forwarded-Port}i
+

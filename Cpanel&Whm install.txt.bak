@@ -1,0 +1,64 @@
+ Security Group 
+ SSH
+ Http
+ Https
+ Tcp      2086 /  2087 / 2082 / 2083 / 2095 / 2096 /
+ 
+
+ User name,Password,Access key ID,Secret access key,Console login link
+
+ cpanel,
+
+ AKIATZGNYFWP76ORYJH6
+
+ mDKNEYq+VUF5ovk31uoOmEYw1uob7mJxl9axQPpA
+
+ https://260277022111.signin.aws.amazon.com/console
+
+*********************************************************************************************************************************************
+
+
+ sudo su
+
+ sudo  passwd root
+
+ su root 
+ Pwd =Roshan
+
+ hostnamectl set-hostname cpanel.roshanaws.tk
+
+
+ sudo apt update -y
+
+ sudo apt install wget
+
+ sudo apt install screen
+ 
+ 
+
+ sudo apt install awscli
+ 
+ aws configure
+
+ Access key ID = ________________
+ Secret Access Key = __________________
+ Region =________________
+ Format + ____________________
+
+   -------> Cpanel & Whm install
+ 
+ cd /home && curl -o latest -L https://securedownloads.cpanel.net/latest && sh latest
+ 
+ bash <(curl https://wp-toolkit.plesk.com/cPanel/installer.sh || wget -O - https://wp-toolkit.plesk.com/cPanel/installer.sh) ---------> Wp Install
+
+
+
+**********************************************************************************************************************************
+ 
+To give permission :-
+
+ mkdir /usr/local/tmpdir;
+ export TMP=/usr/local/tmpdir 
+ unset TMP
+ sudo mount /tmp -o remount,exec
+

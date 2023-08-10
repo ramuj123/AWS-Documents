@@ -1,0 +1,68 @@
+#!/bin/bash
+
+################################################################
+##
+## Shell script to archive website code and upload to S3 bucket.
+##
+#################################################################
+
+S3_BUCKET_NAME=""
+DIR_TO_BACKUP="/var/www/"
+BACKUP_FILENAME='website'
+BACKUP_FILE_DEST="/website_backup/*"
+
+TODAY=`date +%Y%m%d%H%M`
+YY=`date +%Y`
+MM=`date +%m`
+
+sudo tar czf /website_backup/${BACKUP_FILENAME}-${TODAY}.tar.gz ${DIR_TO_BACKUP}
+
+aws s3 cp /website_backup/${BACKUP_FILENAME}-${TODAY}.tar.gz s3://${S3_BUCKET_NAME}/${YY}/${MM}/
+
+if [ $? -eq 0 ]; then
+ echo "Backup successfully uploaded to s3 bucket"
+else
+    echo "Error in s3 backup"
+fi
+
+for f in $BACKUP_FILE_DEST
+do
+  if [ $(( $(date +%s) - $(date +%s -r $f) )) -ge 604800 ]; then
+    rm -rf $f
+    echo "$f deleted Successfully"
+  else
+    echo "$f not deleted as it is not old than 7 days."
+  fi
+done
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Policy For Get Notification.
+
+
+{
+   "Id": "s3EventSNS",
+   "Version": "2012-10-17",
+   "Statement": [
+     {
+       "Sid": "s3EventSNSNotification",
+       "Action": [
+         "sns:Publish"
+       ],
+       "Effect": "Allow",
+       "Resource": "",
+       "Condition": {
+         "ArnLike": {
+           "aws:SourceArn": ""
+         }
+       },
+       "Principal": "*"
+     }
+   ]
+ }
+
+
+only put on aws3:bucket souces arn and resource-SNS Topic ARN 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+

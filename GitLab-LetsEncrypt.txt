@@ -1,0 +1,5 @@
+sudo gitlab-ctl status
+
+sudo gitlab-ctl reconfigure
+
+sudo gitlab-ctl restart

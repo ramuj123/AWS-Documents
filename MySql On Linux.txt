@@ -1,0 +1,45 @@
+Document How To Install MySql : 
+
+URL :-    https://techviewleo.com/how-to-install-mysql-8-on-amazon-linux-2/
+
+************************************************************************************************************************
+
+Create User and give him full PRIVILEGES
+
+
+{ CREATE USER 'roshan'@'localhost' IDENTIFIED BY 'Roshan@2310'; }  ______ { CREATE USER 'roshan'@'%' IDENTIFIED BY 'Jadhav#2310'; }
+
+{ GRANT ALL PRIVILEGES ON *.* TO 'roshan'@'localhost' WITH GRANT OPTION; }________ { GRANT ALL PRIVILEGES ON *.* TO 'roshan'@'%' WITH GRANT OPTION; }
+
+FLUSH PRIVILEGES;
+
+CREATE DATABASE db_mysql;
+
+USE db_mysql;
+
+CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20),species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
+
+DESCRIBE pet;
+
+INSERT INTO pet VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);
+
+INSERT INTO pet VALUES ('Puppy','Bony','ham','M','1996-05-12',NULL);
+
+INSERT INTO pet VALUES ('tuffi','Bony','hader','f','1999-05-12',NULL);
+
+INSERT INTO pet VALUES ('tomy','B','hr','M','1999-05-12',NULL);
+
+SELECT * FROM pet;
+
+************************************************************************************************************************
+How to check the User and Drop the User in mySql
+
+
+Select user from mysql.user;
+
+drop user'root'@'localhost';
+
+DROP DATABASE databasename; 
+
+
+
